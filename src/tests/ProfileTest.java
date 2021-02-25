@@ -1,7 +1,16 @@
 package tests;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class ProfileTest extends BasicTest {
 
@@ -45,11 +54,5 @@ public class ProfileTest extends BasicTest {
 		Assert.assertEquals(this.notification.message(), "Logout Successfull!", "ERROR");
 	}
 
-	@Test(priority = 15)
-	public void mealItem() {
-		driver.navigate().to("http://demo.yo-meals.com/meal/lobster-shrimp-chicken-quesadilla-combo");
-		this.location.ClosePopup();
-		this.meal.AddToCart("2");
-		Assert.assertEquals(this.notification.message(), "The Following Errors Occurred:", "ERROR");
-	}
+
 }

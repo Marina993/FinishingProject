@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,7 +23,9 @@ public class MealPage extends BasicPage {
 	public void AddToCart(String q) {
 
 		WebElement Q = driver.findElement(By.name("product_qty"));
-		Q.clear();
+		Q.click();
+		Q.sendKeys(Keys.CONTROL+"a");
+		Q.sendKeys(Keys.DELETE);
 		Q.sendKeys(q);
 		this.getAddToCart().click();
 	}

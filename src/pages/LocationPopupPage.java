@@ -20,7 +20,7 @@ public class LocationPopupPage extends BasicPage {
 	}
 
 	public WebElement getKeyword() {
-		return driver.findElement(By.id("locality_keyword"));
+		return driver.findElement(By.xpath("//*[@id='locality_keyword']"));
 	}
 
 	public WebElement getLocationItem(String locationName) {
@@ -40,6 +40,7 @@ public class LocationPopupPage extends BasicPage {
 	}
 
 	public void SetLocation(String locationName) {
+		this.getLocation().click();
 		this.getKeyword().click();
 		String dataValue = this.getLocationItem(locationName).getAttribute("data-value");
 

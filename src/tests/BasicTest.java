@@ -1,11 +1,19 @@
 package tests;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -17,6 +25,7 @@ import pages.LoginPage;
 import pages.MealPage;
 import pages.NotificationSystemPage;
 import pages.ProfilePage;
+import pages.SearchResultPage;
 
 public abstract class BasicTest {
 
@@ -30,6 +39,7 @@ public abstract class BasicTest {
 	protected MealPage meal;
 	protected NotificationSystemPage notification;
 	protected ProfilePage profile;
+	protected SearchResultPage search;
 	protected String baseUrl = "http://demo.yo-meals.com";
 	protected String username = "customer@dummyid.com";
 	protected String password = "12345678a";
@@ -51,16 +61,23 @@ public abstract class BasicTest {
 		this.meal = new MealPage (driver,waiter);
 		this.notification = new NotificationSystemPage (driver, waiter);
 		this.profile = new ProfilePage (driver, waiter);	
+		this.search = new SearchResultPage (driver, waiter);
 	}
 	
 	@AfterMethod
-	public void afterM () {
-		//screenshot
+	public void afterM (ITestResult result) throws IOException {
+		
+		String pictureDate = new SimpleDateFormat("yyyyMMddHHmmss'.png'").format(new Date());
+		if (result.getStatus() == ITestResult.FAILURE) {
+			TakesScreenshot scr = (TakesScreenshot)driver;
+			File scrPic = scr.getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrPic, new File("screenshots/"+pictureDate));
+		}
 		driver.manage().deleteAllCookies();
 	}
 	
-//	@AfterClass
-//	public void afterC () {
-//		driver.close();
-//	}
+	@AfterClass
+	public void afterC () {
+		driver.close();
+	}
 }
