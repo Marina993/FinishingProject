@@ -15,17 +15,18 @@ public class SearchTest extends BasicTest{
 
 	@Test
 	public void searchTest () throws IOException, InterruptedException  {
-	//	SoftAssert sa = new SoftAssert ();
+		SoftAssert sa = new SoftAssert ();
 		
 		driver.navigate().to("http://demo.yo-meals.com/meals");
 		this.location.ClosePopup();
 		this.location.SetLocation("City Center - Albany");
+		
 		File file = new File("data/FinalProject.xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
 		XSSFSheet sheet = wb.getSheet("Meal Search Results");
 		
-		for (int i =1; i <sheet.getLastRowNum(); i++) {
+		for (int i =1; i < 7; i++) {
 			XSSFRow row = sheet.getRow(i);
 			
 			String location = row.getCell(0).getStringCellValue();
@@ -36,12 +37,19 @@ public class SearchTest extends BasicTest{
 			this.location.SetLocation(location);
 			Thread.sleep(2000);
 			
-	//		sa.assertEquals(this.search.getNumberOfResults(), numberofResults, "ERROR");
-			driver.navigate().refresh();
-	//		sa.assertAll();
+			sa.assertEquals(this.search.getNumberOfResults(), numberofResults, "ERROR");
 			
+			String name;
+			for (int k =3; k<=(this.search.resultNames().size()+2); k++) {
+				
+				name = row.getCell(k).getStringCellValue();
+	//			System.out.println (name);
+				for (int j =0; j<this.search.getNumberOfResults(); j++) {
+				sa.assertEquals(name, this.search.resultNames().get(j).contains(name), "ERROR");}
+				
+		}
 		}
 		
-		
+		sa.assertAll();		
 	}
 }
