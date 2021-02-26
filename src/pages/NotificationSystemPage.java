@@ -23,7 +23,8 @@ public class NotificationSystemPage extends BasicPage {
 
 	public void waitMessage() {
 		waiter.until(ExpectedConditions.attributeToBe(
-				driver.findElement(By.xpath("//*[contains(@class, 'system_message')]")), "style", "display: none;"));
+				driver.findElement
+				(By.xpath("//*[contains(@class, 'system_message')]")), "style", "display: none;"));
 	}
 
 }

@@ -14,7 +14,6 @@ public class AuthPage extends BasicPage {
 
 	public WebElement getLogoutBtn() {
 		return driver.findElement(By.className("filled"));
-		// proveri xpath
 	}
 
 	public void Logout() {

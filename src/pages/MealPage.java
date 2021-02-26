@@ -13,11 +13,13 @@ public class MealPage extends BasicPage {
 	}
 
 	public WebElement getFavourite() {
-		return driver.findElement(By.xpath("//*[@class = 'favourite  itemfav link']"));
+		return driver.findElement
+				(By.xpath("//*[@class = 'favourite  itemfav link']"));
 	}
 
 	public WebElement getAddToCart() {
-		return driver.findElement(By.xpath("//*[@class = 'btn btn--primary btn--large js-proceedtoAddInCart ']"));
+		return driver.findElement
+				(By.xpath("//*[@class = 'btn btn--primary btn--large js-proceedtoAddInCart ']"));
 	}
 
 	public void AddToCart(String q) {

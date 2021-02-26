@@ -49,7 +49,7 @@ public class ProfilePage extends BasicPage {
 	}
 
 	public WebElement getSaveBtn() {
-//		return driver.findElement(By.xpath("//*[@name = 'btn_submit'][@value='Save']"));
+
 		return driver.findElement(By.xpath("//*[@type = 'submit']"));
 	}
 
