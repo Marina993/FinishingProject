@@ -3,9 +3,10 @@
 <suite name="Yo meal website">
   <test thread-count="5" name="Test">
     <classes>
+        <class name="tests.SearchTest"/>  
        <class name="tests.ProfileTest"/>
-      <class name="tests.MealItemTest"/>
-      <class name="tests.SearchTest"/>
+       <class name="tests.MealItemTest"/>
+
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

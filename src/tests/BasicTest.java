@@ -74,6 +74,7 @@ public abstract class BasicTest {
 			FileUtils.copyFile(scrPic, new File("screenshots/"+pictureDate));
 		}
 		driver.manage().deleteAllCookies();
+		driver.navigate().refresh();
 	}
 	
 	@AfterClass

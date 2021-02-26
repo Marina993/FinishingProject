@@ -75,5 +75,7 @@ public class MealItemTest extends BasicTest {
 		sa.assertEquals(this.notification.message(), "All meals removed from Cart successfully",
 				"[ERROR] - Remove all meals from cart failed");
 		sa.assertAll();
+		wb.close();
+		fis.close();
 	}
 }

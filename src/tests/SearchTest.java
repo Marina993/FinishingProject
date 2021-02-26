@@ -52,5 +52,7 @@ public class SearchTest extends BasicTest {
 		}
 
 		sa.assertAll();
+		wb.close();
+		fis.close();
 	}
 }
